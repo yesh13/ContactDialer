@@ -51,7 +51,7 @@ public class ContactsActivity extends Activity {
 		View aboutDialog = LayoutInflater.from(mContext)
 				.inflate(R.layout.about_information, null);
 		TextView text = (TextView) aboutDialog.findViewById(R.id.authorInfo);
-		text.setText("written by:\n"+"yeshuhao13@gmail.com");
+		text.setText(this.getString(R.string.label_author)+this.getString(R.string.email));
 		PackageInfo pi=null;
 		try {
 			pi = mContext.getPackageManager().getPackageInfo(mContext.getPackageName(),0);
@@ -59,9 +59,9 @@ public class ContactsActivity extends Activity {
 			e.printStackTrace();
 		}
 		text = (TextView) aboutDialog.findViewById(R.id.versionInfo);
-		text.setText("version:\n"+pi.versionName);
+		text.setText(this.getString(R.string.label_version)+pi.versionName);
 		new AlertDialog.Builder(mContext)
-		.setTitle("About")
+		.setTitle(this.getString(R.string.label_about))
 		.setView(aboutDialog)
 		.show();
 	}
@@ -139,14 +139,14 @@ public class ContactsActivity extends Activity {
 				
 				if (Playing.get()) {
 					AlertDialog hintDialog = new AlertDialog.Builder(mContext)
-					.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+					.setNegativeButton(mContext.getString(R.string.label_cancel), new DialogInterface.OnClickListener() {
 						
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 							// TODO Auto-generated method stub
 							dialog.dismiss();
 						}
-					}).setTitle("It is dialing now!").create();
+					}).setTitle(mContext.getString(R.string.label_dialnotification)).create();
 					hintDialog.show();
 					return;
 				}
@@ -161,7 +161,7 @@ public class ContactsActivity extends Activity {
 				new AlertDialog.Builder(mContext)
 				.setTitle("go on?")
 				.setView(editNumber)
-				.setPositiveButton("Dial", new DialogInterface.OnClickListener() {
+				.setPositiveButton(mContext.getString(R.string.label_dial), new DialogInterface.OnClickListener() {
 					
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
@@ -202,7 +202,7 @@ public class ContactsActivity extends Activity {
 						
 					}
 				})
-				.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+				.setNegativeButton(mContext.getString(R.string.label_cancel), new DialogInterface.OnClickListener() {
 					
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
