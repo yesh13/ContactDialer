@@ -5,8 +5,8 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
 public class Duration {
-	private int duration=200;
-	private int interval=200;
+	private int duration=50;
+	private int interval=50;
 	private Context mContext=null;
 	private Duration(){
 	}   

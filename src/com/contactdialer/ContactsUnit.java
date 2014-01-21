@@ -1,10 +1,10 @@
 package com.contactdialer;
 
-import java.util.regex.Pattern;
-
+import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 
+@SuppressLint("InlinedApi")
 public class ContactsUnit {
 	String number;
 	String displayName;
