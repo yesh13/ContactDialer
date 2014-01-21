@@ -22,7 +22,7 @@ public class LookupTable {
 	private Context mContext;
 	private HashSet<String> districts=new HashSet<String>();
 	private HashSet<String> countries=new HashSet<String>();
-	private TreeMap<String, String> mobileTable=new TreeMap<String, String>();
+	private SQLiteDatabase dbMobileTable=null;
 	private LookupTable(){
 	}
 	private static LookupTable singleton=new LookupTable();
@@ -66,10 +66,11 @@ public class LookupTable {
 		return districts.contains(s);
 	}
 	public String district(String s){
-		
-		DataBaseOpener myOpener = new DataBaseOpener(mContext,"/sdcard/number.db", "number.db");
-		SQLiteDatabase db = myOpener.getReadableDatabase();
-		Cursor cursor=db.query("Mobile_Table", Table.column, Table.select, new String[]{s}, null,null,null);
+		if(dbMobileTable==null) {
+			DataBaseOpener myOpener = new DataBaseOpener(mContext,"number.db", "number.db");
+			dbMobileTable = myOpener.getReadableDatabase();
+		}
+		Cursor cursor=dbMobileTable.query("Mobile_Table", Table.column, Table.select, new String[]{s}, null,null,null);
 		if(cursor.moveToFirst()){
 			return cursor.getString(Table.DISTRICT_COLUMN);
 		}
