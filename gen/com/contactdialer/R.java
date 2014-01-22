@@ -34,12 +34,17 @@ public final class R {
         public static final int editDuration=0x7f08000b;
         public static final int editInterval=0x7f08000d;
         public static final int editSearch=0x7f080006;
-        public static final int menu_about=0x7f080012;
-        public static final int menu_exit=0x7f080013;
-        public static final int menu_settings=0x7f080011;
+        public static final int horizontalScrollView1=0x7f080012;
+        public static final int menu_about=0x7f080017;
+        public static final int menu_exit=0x7f080018;
+        public static final int menu_settings=0x7f080016;
+        public static final int ratingBar1=0x7f080015;
         public static final int savebutton=0x7f080010;
         public static final int searchIcon=0x7f080005;
+        public static final int seekBar1=0x7f080011;
         public static final int seekVolume=0x7f08000f;
+        public static final int spinner1=0x7f080014;
+        public static final int tab1=0x7f080013;
         public static final int textDuration=0x7f08000a;
         public static final int textInterval=0x7f08000c;
         public static final int textVolume=0x7f08000e;
@@ -52,6 +57,7 @@ public final class R {
         public static final int main=0x7f030003;
         public static final int number_check=0x7f030004;
         public static final int setting=0x7f030005;
+        public static final int user=0x7f030006;
     }
     public static final class menu {
         public static final int menulist=0x7f070000;

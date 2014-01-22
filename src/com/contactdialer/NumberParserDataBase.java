@@ -7,16 +7,13 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
-import android.os.Environment;
 
-public class DataBaseOpener {
-	private static String databasesPath = "/databases/";
-	private static String packagePath = "/data/data/";
+public class NumberParserDataBase {
 	private Context mContext;
 	private String dbPath;
 	private String backup;
 
-	public DataBaseOpener(Context ctx, String dbPath, String backup) {
+	public NumberParserDataBase(Context ctx, String dbPath, String backup) {
 		mContext = ctx;
 		this.dbPath = dbPath;
 		this.backup = backup;

@@ -1,12 +1,6 @@
 package com.contactdialer;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
-import android.R.bool;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ContentResolver;
@@ -20,10 +14,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,7 +33,7 @@ public class ContactsActivity extends Activity {
 
 	private Context mContext = null;
 	private ContactsBook mContactsBook = new ContactsBook();
-	private ContactsBook mFilteredContactsBook = null;
+	private Cursor originalCursor=null;
 	private Bitmap contactPhoto;
 
 	private ListView mListView = null;
@@ -80,7 +72,7 @@ public class ContactsActivity extends Activity {
 
 		switch (item.getItemId()) {
 		case R.id.menu_settings:
-			Intent intent = new Intent(this, Setting.class);
+			Intent intent = new Intent(this, SettingActivity.class);
 			startActivity(intent);
 			return true;
 		case R.id.menu_about:
@@ -100,7 +92,7 @@ public class ContactsActivity extends Activity {
 
 			@Override
 			public void afterTextChanged(Editable s) {
-				mFilteredContactsBook = mContactsBook.filter(s.toString());
+				mContactsBook.filter(originalCursor,s.toString());
 				((MyListAdapter) mListView.getAdapter()).notifyDataSetChanged();
 			}
 
@@ -124,19 +116,16 @@ public class ContactsActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		mContext = this;
-		Duration.init(this);
-		Volume.init(this);
-		LookupTable.getInstance().init(mContext);
+		NumberParserModel.getInstance().init(mContext);
+		PrefModel.getInstance().init(mContext);
 		this.setContentView(R.layout.main);
-		NumberConverter nc=new NumberConverter("+862781996689", new User(), LookupTable.getInstance());
 		mListView = (ListView) this.findViewById(R.id.contactsView);
 		/** 得到手机通讯录联系人信息 **/
 		ContentResolver resolver = mContext.getContentResolver();
-		Cursor phoneCursor = resolver.query(Phone.CONTENT_URI,
+		originalCursor = resolver.query(Phone.CONTENT_URI,
 				ContactsUnit.PHONES_PROJECTION, null, null,
 				Phone.SORT_KEY_PRIMARY + " asc");
-		mContactsBook.read(phoneCursor);
-		mFilteredContactsBook = mContactsBook;
+		mContactsBook.filter(originalCursor,"");
 		contactPhoto = BitmapFactory.decodeResource(getResources(),
 				R.drawable.contact_photo);
 		myAdapter = new MyListAdapter();
@@ -180,7 +169,8 @@ public class ContactsActivity extends Activity {
 					R.layout.number_check, null);
 			final EditText editNumber = (EditText) checkView
 					.findViewById(R.id.check_number_edit);
-			editNumber.setText(new NumberConverter(numberFrom,new User(),LookupTable.getInstance()).getConverted());
+			UserModel uModel=new UserModel();
+			editNumber.setText(new NumberConverter(numberFrom,uModel.new User(),NumberParserModel.getInstance()).getConverted());
 			TextView numberNoti = (TextView) checkView
 					.findViewById(R.id.check_number_notification);
 			numberNoti.setText(mContext
@@ -207,7 +197,7 @@ public class ContactsActivity extends Activity {
 	class MyListAdapter extends BaseAdapter {
 
 		public int getCount() {
-			return mFilteredContactsBook.size();
+			return mContactsBook.size();
 		}
 
 		public Object getItem(int position) {
@@ -230,7 +220,7 @@ public class ContactsActivity extends Activity {
 					.findViewById(R.id.color_title);
 			TextView text = (TextView) convertView
 					.findViewById(R.id.color_text);
-			ContactsUnit person = mFilteredContactsBook.get(position);
+			ContactsUnit person = mContactsBook.get(position);
 			// photoid 大于0 表示联系人有头像 如果没有给此人设置头像则给他一个默认的
 			// if (photoid > 0) {
 			// Uri uri = ContentUris.withAppendedId(
@@ -251,7 +241,7 @@ public class ContactsActivity extends Activity {
 			// clear the displayname text if the name is the same as the last
 			// name
 			if (position > 0) {
-				ContactsUnit lastPerson = mFilteredContactsBook
+				ContactsUnit lastPerson = mContactsBook
 						.get(position - 1);
 				if (lastPerson.getSortKey().equals(person.getSortKey())) {
 					title.setText("");

@@ -1,7 +1,6 @@
 package com.contactdialer;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.regex.Pattern;
 
 import android.annotation.SuppressLint;
@@ -27,17 +26,17 @@ public class ContactsBook implements Cloneable{
 		cb.contacts=(ArrayList<ContactsUnit>) this.contacts.clone();
 		return cb;
 	}
-	public ContactsBook filter(String filterString){
-		ContactsBook db =new ContactsBook();
-		Iterator<ContactsUnit> it =contacts.iterator();
+	public ContactsBook filter(Cursor contactCursor,String filterString){
+		contacts=new ArrayList<ContactsUnit>();
 		Pattern pattern= Pattern.compile(compileString(filterString));
-		while(it.hasNext()) {
-			ContactsUnit cu =it.next();
+		contactCursor.moveToFirst();
+		do {
+			ContactsUnit cu=new ContactsUnit(contactCursor);
 			if(pattern.matcher(cu.getSortKey()).find()){
-				db.contacts.add(cu);
+				contacts.add(cu);
 			}
-		}
-		return db;
+		}while (contactCursor.moveToNext());
+		return this;
 	}
 	
 	//compileString create String for regex.Pattern to compile

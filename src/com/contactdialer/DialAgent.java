@@ -26,8 +26,8 @@ class DialAgent implements Runnable {
 				.getStreamVolume(AudioManager.STREAM_MUSIC);
 		am.setStreamVolume(
 				AudioManager.STREAM_MUSIC,
-				(int) (Volume.getVolume()
-						/ ((double) Volume.max) * musicMax),
+				(int) (VariablesControl.getInstance().getVolume()
+						/ ((double) VariablesControl.MAX) * musicMax),
 				0);
 		ToneGenerator tg = new ToneGenerator(
 				AudioManager.STREAM_MUSIC,
@@ -40,15 +40,15 @@ class DialAgent implements Runnable {
 			int tone = (int) phoneNumber
 					.charAt(itr) - 0x30;
 			if (tone < 10 && tone >= 0)
-				tg.startTone(tone, Duration
+				tg.startTone(tone, VariablesControl.getInstance()
 						.getDuration());
 			else
 				continue;
 
 			try {
-				Thread.sleep(Duration
+				Thread.sleep(VariablesControl.getInstance()
 						.getDuration()
-						+ Duration
+						+ VariablesControl.getInstance()
 								.getInterval());
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch
