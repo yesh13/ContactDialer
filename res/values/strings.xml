@@ -13,4 +13,18 @@
     <string name="word_dial">Dial</string>
     <string name="notf_dialing">It\'s Dial Now !</string>
     <string name="notf_original_number">Original Number: </string>
+    <string name="setting_nav_pref">Preference</string>
+    <string name="setting_nav_user">Modes</string>
+    <string name="word_edit">Edit</string>
+    <string name="word_delete">Delete</string>
+    <string name="user_edit_name">Mode Edit</string>
+    <string name="word_name">Name</string>
+    <string name="word_country">Country</string>
+    <string name="word_district">District</string>
+    <string name="word_group">Group</string>
+    <string name="word_in_prefix">InGroupPrefix</string>
+    <string name="word_out_prefix">OutGroupPrefix</string>
+    <string name="word_mobile_prefix">MobilePrefix</string>
+    <string name="word_add">Add</string>
+    <string name="equal_name_notification">Activated mode should not be removed!</string>
 </resources>

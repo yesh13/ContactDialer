@@ -17,7 +17,8 @@ public class NumberConverter {
 	private static final int TYPE_RAW = 2;
 	private int group_width;
 	private UserModel.User user;
-	private static final String CHINA="86";
+	public static final String CHINA="86";
+	public static final String MOBILEPREFIX="0";
 
 	public NumberConverter(String s, UserModel.User user, NumberParserModel lt) {
 		number = s.replaceAll("\\s", "");

@@ -10,7 +10,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:src="@drawable/ic_action_search" />
+        android:src="@drawable/ic_action_search" >
+        <requestFocus />
+        </ImageView>
 
     <EditText
         android:id="@+id/editSearch"

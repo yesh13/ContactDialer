@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/user_item_selected_edit" android:title="@string/word_edit"></item>
+    <item android:id="@+id/user_item_selected_delete" android:title="@string/word_delete"></item>
+    
+
+</menu>

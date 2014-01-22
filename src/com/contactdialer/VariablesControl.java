@@ -14,10 +14,15 @@ public class VariablesControl {
 	private static final String VOLUME_NAME = "Volume";
 	private static final String CURRENT_USER_NAME = "CurrentUser";
 	public static int MAX = 100;
+	private boolean valid=false;
 	private int volume = -1;
 	private int duration = -1;
 	private int interval = -1;
 	private String currentUser;
+
+	public String getCurrentUser() {
+		return currentUser;
+	}
 
 	private VariablesControl() {
 		volume = -1;
@@ -28,11 +33,8 @@ public class VariablesControl {
 	private static VariablesControl singleton = new VariablesControl();
 
 	public static VariablesControl getInstance() {
-		if (singleton.volume < 0) {
-			SQLiteDatabase db = PrefModel.getDateBase();
-			if (db != null) {
-				singleton.init(db);
-			}
+		if (!singleton.valid) {
+			singleton.queryAll();
 		}
 		return singleton;
 	}
@@ -61,41 +63,63 @@ public class VariablesControl {
 		return interval = time;
 	}
 	public String setCurrentUser(String userName) {
-		return currentUser=userName;
+		currentUser=userName;
+		updataCurrentUser();
+		return currentUser;
 	}
 
-	private boolean init(SQLiteDatabase db) {
-		volume = Integer.valueOf(query(db, VOLUME_NAME));
-		duration = Integer.valueOf(query(db, DURATION_NAME));
-		interval = Integer.valueOf(query(db, INTERVAL_NAME));
-		currentUser=query(db, CURRENT_USER_NAME);
+	public boolean queryAll() {
+		SQLiteDatabase db = VarModel.getDateBase();
+		if (db==null){
+			return false;
+		}
+		volume = Integer.valueOf(query(VOLUME_NAME));
+		duration = Integer.valueOf(query(DURATION_NAME));
+		interval = Integer.valueOf(query(INTERVAL_NAME));
+		currentUser=query(CURRENT_USER_NAME);
+		valid=true;
 		return true;
 
 	}
 
-	public String query(final SQLiteDatabase db, final String item) {
+	public String query(final String item) {
+		SQLiteDatabase db = VarModel.getDateBase();
+		if (db==null){
+			return null;
+		}
 		Cursor cursor = db.query(TABLE_NAME, null, KEY_NAME + " = ?",
 				new String[]{item}, null, null, null);
 		cursor.moveToFirst();
 		return cursor.getString(1);
 	}
 
-	public void commit() {
+	public boolean updateAll() {
 		// save volume data into storage
-		SQLiteDatabase db = PrefModel.getDateBase();
-		update(db, VOLUME_NAME, String.valueOf(volume));
-		update(db, DURATION_NAME, String.valueOf(duration));
-		update(db, INTERVAL_NAME, String.valueOf(interval));
-		update(db, CURRENT_USER_NAME, currentUser);
-
+		SQLiteDatabase db = VarModel.getDateBase();
+		if (db==null){
+			return false;
+		}
+		update(VOLUME_NAME, String.valueOf(volume));
+		update(DURATION_NAME, String.valueOf(duration));
+		update(INTERVAL_NAME, String.valueOf(interval));
+		update(CURRENT_USER_NAME, currentUser);
+		return true;
 	}
 
-	public boolean update(SQLiteDatabase db, String key, String value) {
+	public boolean update(String key, String value) {
+		SQLiteDatabase db = VarModel.getDateBase();
+		if (db==null){
+			return false;
+		}
 		ContentValues cv = new ContentValues();
 		cv.put(VALUE_NAME, value);
 		int i=db.update(TABLE_NAME, cv, KEY_NAME+" =?",new String[]{key});
-		Log.d("Volume", query(db, VOLUME_NAME));
+		Log.d("Volume", query(VOLUME_NAME));
 		Log.d("num", String.valueOf(i));
 		return true;
+	}
+
+	public void updataCurrentUser() {
+		update(CURRENT_USER_NAME, currentUser);
 	}
 }

@@ -6,14 +6,14 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Environment;
 
-public class PrefModel {
+public class VarModel {
 	private String dataBaseFileName="%s/Android/data/%s/databases/pref.db";
-	private PrefModel() {
+	private VarModel() {
 	}
 
-	private static PrefModel singleton = new PrefModel();
+	private static VarModel singleton = new VarModel();
 
-	public static PrefModel getInstance() {
+	public static VarModel getInstance() {
 		return singleton;
 	}
 	public static SQLiteDatabase getDateBase() {
@@ -33,7 +33,7 @@ public class PrefModel {
 		if(!dir.exists()){
 			dir.mkdirs();
 		}
-		PrefDataBase myHelper = new PrefDataBase(ctx, file.getPath());
+		VarDataBase myHelper = new VarDataBase(ctx, file.getPath());
 		mDB = myHelper.getWritableDatabase();
 	}
 

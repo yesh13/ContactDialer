@@ -27,6 +27,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class ContactsActivity extends Activity {
@@ -42,7 +43,7 @@ public class ContactsActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.menulist, menu);
+		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 
@@ -69,16 +70,15 @@ public class ContactsActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle item selection
-
 		switch (item.getItemId()) {
-		case R.id.menu_settings:
+		case R.id.menu_main_settings:
 			Intent intent = new Intent(this, SettingActivity.class);
 			startActivity(intent);
 			return true;
-		case R.id.menu_about:
+		case R.id.menu_main_about:
 			popAboutDialog();
 			return true;
-		case R.id.menu_exit:
+		case R.id.menu_main_exit:
 			android.os.Process.killProcess(android.os.Process.myPid()); // 获取PID，目前获取自己的也只有该API，否则从/proc中自己的枚举其他进程吧，不过要说明的是，结束其他进程不一定有权限，不然就乱套了。
 			System.exit(0); // 常规java、c#的标准退出法，返回值为0代表正常退出
 		default:
@@ -117,8 +117,8 @@ public class ContactsActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		mContext = this;
 		NumberParserModel.getInstance().init(mContext);
-		PrefModel.getInstance().init(mContext);
-		this.setContentView(R.layout.main);
+		VarModel.getInstance().init(mContext);
+		setContentView(R.layout.main);
 		mListView = (ListView) this.findViewById(R.id.contactsView);
 		/** 得到手机通讯录联系人信息 **/
 		ContentResolver resolver = mContext.getContentResolver();
@@ -156,9 +156,7 @@ public class ContactsActivity extends Activity {
 								}
 							});
 			if (Playing.get()) {
-				builder.setTitle(
-						mContext.getString(R.string.notf_dialing))
-						.show();
+				Toast.makeText(mContext, R.string.notf_dialing, Toast.LENGTH_SHORT).show();
 				return;
 			}
 			// phone number TextView of an item
@@ -170,7 +168,7 @@ public class ContactsActivity extends Activity {
 			final EditText editNumber = (EditText) checkView
 					.findViewById(R.id.check_number_edit);
 			UserModel uModel=new UserModel();
-			editNumber.setText(new NumberConverter(numberFrom,uModel.new User(),NumberParserModel.getInstance()).getConverted());
+			editNumber.setText(new NumberConverter(numberFrom,uModel.get(VariablesControl.getInstance().getCurrentUser()),NumberParserModel.getInstance()).getConverted());
 			TextView numberNoti = (TextView) checkView
 					.findViewById(R.id.check_number_notification);
 			numberNoti.setText(mContext

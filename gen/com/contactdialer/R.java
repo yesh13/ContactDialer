@@ -19,62 +19,93 @@ public final class R {
     public static final class drawable {
         public static final int contact_photo=0x7f020000;
         public static final int ic_action_about=0x7f020001;
-        public static final int ic_action_search=0x7f020002;
-        public static final int ic_action_settings=0x7f020003;
-        public static final int ic_launcher=0x7f020004;
+        public static final int ic_action_new=0x7f020002;
+        public static final int ic_action_save=0x7f020003;
+        public static final int ic_action_search=0x7f020004;
+        public static final int ic_action_settings=0x7f020005;
+        public static final int ic_check=0x7f020006;
+        public static final int ic_launcher=0x7f020007;
     }
     public static final class id {
         public static final int authorInfo=0x7f080001;
-        public static final int check_number_edit=0x7f080009;
-        public static final int check_number_notification=0x7f080008;
+        public static final int check_number_edit=0x7f08000b;
+        public static final int check_number_notification=0x7f08000a;
         public static final int color_image=0x7f080002;
         public static final int color_text=0x7f080004;
         public static final int color_title=0x7f080003;
-        public static final int contactsView=0x7f080007;
-        public static final int editDuration=0x7f08000b;
-        public static final int editInterval=0x7f08000d;
-        public static final int editSearch=0x7f080006;
-        public static final int horizontalScrollView1=0x7f080012;
-        public static final int menu_about=0x7f080017;
-        public static final int menu_exit=0x7f080018;
-        public static final int menu_settings=0x7f080016;
-        public static final int ratingBar1=0x7f080015;
-        public static final int savebutton=0x7f080010;
-        public static final int searchIcon=0x7f080005;
-        public static final int seekBar1=0x7f080011;
-        public static final int seekVolume=0x7f08000f;
-        public static final int spinner1=0x7f080014;
-        public static final int tab1=0x7f080013;
-        public static final int textDuration=0x7f08000a;
-        public static final int textInterval=0x7f08000c;
-        public static final int textVolume=0x7f08000e;
+        public static final int contactsView=0x7f080009;
+        public static final int district=0x7f080013;
+        public static final int editDuration=0x7f08000d;
+        public static final int editInterval=0x7f08000f;
+        public static final int editSearch=0x7f080008;
+        public static final int group=0x7f080014;
+        public static final int in_prefix=0x7f080015;
+        public static final int key=0x7f080005;
+        public static final int list1=0x7f080017;
+        public static final int menu_main_about=0x7f08001c;
+        public static final int menu_main_exit=0x7f08001d;
+        public static final int menu_main_settings=0x7f08001b;
+        public static final int menu_setting_save=0x7f08001e;
+        public static final int name=0x7f080012;
+        public static final int out_prefix=0x7f080016;
+        public static final int prefix=0x7f080019;
+        public static final int searchIcon=0x7f080007;
+        public static final int seekVolume=0x7f080011;
+        public static final int textDuration=0x7f08000c;
+        public static final int textInterval=0x7f08000e;
+        public static final int textVolume=0x7f080010;
+        public static final int user_item_selected_delete=0x7f080020;
+        public static final int user_item_selected_edit=0x7f08001f;
+        public static final int user_list_item_icon=0x7f08001a;
+        public static final int user_list_item_name=0x7f080018;
+        public static final int value=0x7f080006;
         public static final int versionInfo=0x7f080000;
     }
     public static final class layout {
         public static final int about_information=0x7f030000;
         public static final int colorlist=0x7f030001;
-        public static final int layout_about=0x7f030002;
-        public static final int main=0x7f030003;
-        public static final int number_check=0x7f030004;
-        public static final int setting=0x7f030005;
-        public static final int user=0x7f030006;
+        public static final int edit_text_line=0x7f030002;
+        public static final int layout_about=0x7f030003;
+        public static final int main=0x7f030004;
+        public static final int number_check=0x7f030005;
+        public static final int pref=0x7f030006;
+        public static final int setting=0x7f030007;
+        public static final int user_edit=0x7f030008;
+        public static final int user_list=0x7f030009;
+        public static final int user_list_item=0x7f03000a;
     }
     public static final class menu {
-        public static final int menulist=0x7f070000;
+        public static final int main=0x7f070000;
+        public static final int setting=0x7f070001;
+        public static final int user_item_selected=0x7f070002;
     }
     public static final class string {
         public static final int app_name=0x7f050000;
         public static final int email=0x7f050004;
+        public static final int equal_name_notification=0x7f05001a;
         public static final int hello_world=0x7f050002;
         public static final int notf_author=0x7f050009;
         public static final int notf_dialing=0x7f05000b;
         public static final int notf_original_number=0x7f05000c;
         public static final int notf_version=0x7f050008;
+        public static final int setting_nav_pref=0x7f05000d;
+        public static final int setting_nav_user=0x7f05000e;
+        public static final int user_edit_name=0x7f050011;
         public static final int version=0x7f050005;
         public static final int word_about=0x7f050003;
+        public static final int word_add=0x7f050019;
         public static final int word_cancel=0x7f050007;
+        public static final int word_country=0x7f050013;
+        public static final int word_delete=0x7f050010;
         public static final int word_dial=0x7f05000a;
+        public static final int word_district=0x7f050014;
+        public static final int word_edit=0x7f05000f;
         public static final int word_exit=0x7f050006;
+        public static final int word_group=0x7f050015;
+        public static final int word_in_prefix=0x7f050016;
+        public static final int word_mobile_prefix=0x7f050018;
+        public static final int word_name=0x7f050012;
+        public static final int word_out_prefix=0x7f050017;
         public static final int word_settings=0x7f050001;
     }
     public static final class style {
