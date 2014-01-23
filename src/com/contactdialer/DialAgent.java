@@ -10,11 +10,13 @@ class DialAgent implements Runnable {
 	 * 
 	 */
 	private final Context mContext;
-	private final EditText editNumber;
+	private String numberFrom;
+	private String phoneNumber;
 
-	DialAgent(Context context, EditText editNumber) {
+	DialAgent(Context context,String phoneNumber,String numberFrom) {
 		mContext=context;
-		this.editNumber = editNumber;
+		this.phoneNumber=phoneNumber;
+		this.numberFrom=numberFrom;
 	}
 
 	public void run() {
@@ -32,8 +34,6 @@ class DialAgent implements Runnable {
 		ToneGenerator tg = new ToneGenerator(
 				AudioManager.STREAM_MUSIC,
 				100);
-		String phoneNumber = editNumber
-				.getText().toString();
 		int textLength = phoneNumber
 				.length();
 		for (int itr = 0; itr < textLength; itr = itr + 1) {

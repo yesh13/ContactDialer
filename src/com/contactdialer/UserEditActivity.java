@@ -3,6 +3,7 @@ package com.contactdialer;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,7 +19,6 @@ public class UserEditActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 		Bundle extras = getIntent().getExtras();
 		mode=extras.getInt("mode");
 		if (mode==MODE_EDIT) {
@@ -44,6 +44,8 @@ public class UserEditActivity extends Activity {
 		setKeyAndValue(item, getString(R.string.word_out_prefix),
 				user.getOutGroup());
 		setContentView(view);
+		Log.d("getValue", getValue(findViewById(R.id.name)));
+		super.onCreate(savedInstanceState);
 	}
 	private void setKeyAndValue(View view,String key,String value) {
 		TextView tv=(TextView) view.findViewById(R.id.key);

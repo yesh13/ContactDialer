@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.contactdialer"
-    android:versionCode="1"
+    android:versionCode="2"
             android:screenOrientation="portrait"
     android:versionName="@string/version"
       >
@@ -9,8 +9,9 @@
     <!-- 在SDCard中创建于删除文件权限 -->  
      <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />  
      <!-- 往SDCard写入数据权限 -->  
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />  
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> 
+    <uses-permission android:name="android.permission.READ_CALL_LOG"/>
+    <uses-permission android:name="android.permission.READ_SMS"/>
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="19" /> 
@@ -21,7 +22,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.contactdialer.ContactsActivity"
+            android:name="com.contactdialer.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
             <intent-filter>

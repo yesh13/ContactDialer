@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+        <CheckBox
+        android:id="@+id/dial"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/word_dial" />
+    <CheckBox
+        android:id="@+id/sms_in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/label_sms_in" />
+    <CheckBox
+        android:id="@+id/sms_out"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/label_sms_in"  />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+    <CheckBox
+        android:id="@+id/out_going"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/label_out_going" />
+    <CheckBox
+        android:id="@+id/in_coming"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/label_in_coming" />
+    <CheckBox
+        android:id="@+id/missed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/label_missed"  />
+    </LinearLayout>
+
+    
+
+    
+
+</LinearLayout>

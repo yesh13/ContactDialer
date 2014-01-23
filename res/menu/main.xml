@@ -2,18 +2,28 @@
     xmlns:myapp="http://schemas.android.com/apk/res-auto" >
 
     <item
-        android:id="@+id/menu_main_settings"
+        android:id="@+id/edit"
+        android:icon="@drawable/ic_action_edit"
+        android:showAsAction="ifRoom"
+        android:title="@string/word_settings">
+          
+    </item>
+
+
+
+    <item
+        android:id="@+id/settings"
         android:icon="@drawable/ic_action_settings"
-        android:title="@string/word_settings"
-        android:showAsAction="ifRoom">
+        android:showAsAction="ifRoom"
+        android:title="@string/word_settings">
     </item>
     <item
-        android:id="@+id/menu_main_about"
+        android:id="@+id/about"
         android:icon="@drawable/ic_action_about"
         android:title="@string/word_about">
     </item>
     <item
-        android:id="@+id/menu_main_exit"
+        android:id="@+id/exit"
         android:title="@string/word_exit">
     </item>
 

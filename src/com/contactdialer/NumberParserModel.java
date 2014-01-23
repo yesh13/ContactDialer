@@ -62,9 +62,20 @@ public class NumberParserModel {
 			NumberParserDataBase myOpener = new NumberParserDataBase(mContext,"number.db", "number.db");
 			mDB = myOpener.getReadableDatabase();
 		}
-		Cursor cursor=mDB.query("Mobile_Table", Table.column, Table.select, new String[]{s}, null,null,null);
-		if(cursor.moveToFirst()){
-			return cursor.getString(Table.DISTRICT_COLUMN);
+		Cursor cursor=null;
+		try {
+			cursor=mDB.query("Mobile_Table", Table.column, Table.select, new String[]{s}, null,null,null);
+			if(cursor.moveToFirst()){
+				return cursor.getString(Table.DISTRICT_COLUMN);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally{
+			if (cursor!=null) {
+				cursor.close();
+			}
 		}
 		return null;
 	}

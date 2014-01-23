@@ -1,35 +1,24 @@
 package com.contactdialer;
 
-import com.contactdialer.UserModel.User;
 
-import android.app.AlertDialog;
 import android.app.Fragment;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.PopupMenu.OnMenuItemClickListener;
-import android.widget.RadioButton;
-import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Toast;
 
-public class UserFragment extends MenuFragment {
+public class UserFragment extends Fragment {
 	private String longClicked = null;
 	private ListView mListView = null;
 
@@ -125,8 +114,7 @@ public class UserFragment extends MenuFragment {
 
 			}
 
-			ImageView iamge = (ImageView) convertView
-					.findViewById(R.id.user_list_item_icon);
+			
 			TextView text = (TextView) convertView
 					.findViewById(R.id.user_list_item_name);
 			TextView prefix = (TextView) convertView.findViewById(R.id.prefix);

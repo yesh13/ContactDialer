@@ -1,12 +1,10 @@
 package com.contactdialer;
 
-import android.R.menu;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,7 +25,6 @@ public class SettingActivity extends Activity {
 		// TODO Auto-generated method stub
 		ActionBar actionBar = getActionBar();
 	    actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-	    actionBar.setDisplayShowTitleEnabled(false);
 
 		Tab tab = actionBar
 				.newTab()
@@ -139,7 +136,6 @@ public class SettingActivity extends Activity {
 	public class UserTabListener implements ActionBar.TabListener {
 	    private UserFragment mFragment;
 	    private final String mTag;
-	    private final Context mContext;
 
 	    /** Constructor used each time a new tab is created.
 	      * @param activity  The host Activity, used to instantiate the fragment
@@ -147,7 +143,6 @@ public class SettingActivity extends Activity {
 	      * @param clz  The fragment's Class, used to instantiate the fragment
 	      */
 	    public UserTabListener(Context ctx,String tag) {
-	    	mContext=ctx;
 	        mTag = tag;
 	    }
 
@@ -199,7 +194,6 @@ public class SettingActivity extends Activity {
 	public class PrefTabListener implements ActionBar.TabListener {
 	    private PrefFragment mFragment;
 	    private final String mTag;
-	    private final Context mContext;
 
 	    /** Constructor used each time a new tab is created.
 	      * @param activity  The host Activity, used to instantiate the fragment
@@ -207,7 +201,6 @@ public class SettingActivity extends Activity {
 	      * @param clz  The fragment's Class, used to instantiate the fragment
 	      */
 	    public PrefTabListener(Context ctx,String tag) {
-	    	mContext=ctx;
 	        mTag = tag;
 	    }
 

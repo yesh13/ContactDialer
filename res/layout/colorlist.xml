@@ -19,7 +19,7 @@
         android:textSize="15sp" />
 
     <TextView
-        android:id="@+id/color_text"
+        android:id="@+id/number"
         android:layout_width="fill_parent"
         android:layout_height="30sp"
 		android:layout_toRightOf="@+id/color_title"
