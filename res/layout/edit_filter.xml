@@ -23,7 +23,7 @@
         android:id="@+id/sms_out"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/label_sms_in"  />
+        android:text="@string/label_sms_out"  />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

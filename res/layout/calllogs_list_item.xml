@@ -1,48 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:minHeight="60sp"
-    android:layout_height="wrap_content" >
-
-    <TextView
-        android:id="@+id/number"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/margin"
+    android:paddingRight="@dimen/margin" >
+<ImageView
+        android:id="@+id/type1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="25sp"
         android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"/>
+    <TextView
+        android:id="@+id/right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:text="" />
 
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+        android:textSize="21sp"
+        android:layout_toRightOf="@id/type1"
+        android:layout_alignBottom="@id/type1"
         android:text="" />
 
-    <ImageView
-        android:id="@+id/type1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"/>
-    <ImageView
-        android:id="@+id/type2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/type1"
-        android:layout_alignParentBottom="true"/>
+    
 
 
     <TextView
-        android:id="@+id/date"
+        android:id="@+id/subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/type2"
+        android:textSize="15sp"
+        android:layout_below="@id/title"
+        android:layout_alignParentLeft="true"
         android:text="" />
+
+    
 
 </RelativeLayout>

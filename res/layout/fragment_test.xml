@@ -5,7 +5,7 @@
 
     <fragment
         android:id="@+id/fragment1"
-        android:name="com.contactdialer.ContactsFragment"
+        android:name="com.contactdialer.main.ContactsFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

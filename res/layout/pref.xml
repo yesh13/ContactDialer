@@ -1,71 +1,97 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin" >
+    android:paddingTop="@dimen/margin"
+    android:paddingBottom="@dimen/margin"
+            android:paddingLeft="@dimen/margin"
+            android:paddingRight="@dimen/margin"
+    android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/textDuration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/editDuration"
-        android:gravity="center"
-        android:text="Duration" />
-
-    
-	<TextView
-        android:id="@+id/textInterval"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/editInterval"
-        android:gravity="center"
-        android:text="Interval" />
-	
-	<TextView
-        android:id="@+id/textVolume"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/seekVolume"
-        android:gravity="center"
-        android:text="Volume" />
-    
- 	<EditText
-        android:id="@+id/editDuration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="21dp"
-        android:layout_toRightOf="@+id/textDuration"
-        android:ems="10"
-        android:gravity="center"
-        android:inputType="number" />
-    <EditText
-        android:id="@+id/editInterval"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/textInterval"
-        android:layout_below="@+id/editDuration"
-        android:layout_alignLeft="@+id/editDuration"
-        android:ems="10"
-        android:gravity="center"
-        android:inputType="number" />
-
-    <SeekBar
-        android:id="@+id/seekVolume"
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editDuration"
-        android:layout_alignRight="@+id/editInterval"
-        android:layout_below="@+id/editInterval"
-        android:layout_toRightOf="@+id/textVolume"
-        android:layout_marginTop="10sp" />
+        android:layout_height="wrap_content" >
 
-    
-    <requestFocus />
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
 
-    
+            <TextView
+                android:id="@+id/textDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="@string/word_duration"
+                android:textAlignment="gravity"
+                android:textSize="21sp" >
+            </TextView>
 
-</RelativeLayout>
+            <EditText
+                android:id="@+id/editDuration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/horizontal_interval"
+                android:layout_weight="1"
+                android:inputType="number"
+                android:textSize="21sp" >
+            </EditText>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textInterval"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="@string/word_interval"
+                android:textAlignment="gravity"
+                android:textSize="21sp" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/editInterval"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/horizontal_interval"
+                android:layout_weight="1"
+                android:inputType="number"
+                android:textSize="21sp" >
+            </EditText>
+        </TableRow>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/group_interval"
+            android:layout_marginTop="@dimen/group_interval"
+            android:background="@color/gray" />
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textVolume"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="@string/word_volume"
+                android:textSize="21sp" >
+            </TextView>
+
+            <SeekBar
+                android:id="@+id/seekVolume"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/horizontal_interval"
+                android:layout_weight="1" />
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>
