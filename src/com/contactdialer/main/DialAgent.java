@@ -64,7 +64,7 @@ class DialAgent {
 
 	private static boolean playing = false;
 
-	public static void popDialDialog(final Context ctx, final String numberFrom) {
+	public static void popDialDialog(final Context ctx, final String numberFrom,final DialFragment df,boolean check) {
 		// pop a dialog to notify the user the app is dialing another phone
 		// number right now
 		if (playing) {
@@ -78,9 +78,10 @@ class DialAgent {
 		final EditText editNumber = (EditText) checkView
 				.findViewById(R.id.check_number_edit);
 		UserModel uModel = new UserModel();
-		editNumber.setText(new NumberConverter(numberFrom, uModel
+		final String phoneNumber=new NumberConverter(numberFrom, uModel
 				.get(VarProvider.getInstance().getCurrentUser()),
-				NumberParserModel.getInstance()).getConverted());
+				NumberParserModel.getInstance()).getConverted();
+		editNumber.setText(phoneNumber);
 		TextView numberNoti = (TextView) checkView
 				.findViewById(R.id.check_number_notification);
 		numberNoti.setText(ctx.getString(R.string.notf_original_number)
@@ -104,16 +105,39 @@ class DialAgent {
 							@Override
 							public void onClick(DialogInterface dialog,
 									int which) {
-								String phoneNumber = editNumber.getText()
-										.toString();
-								// TODO Auto-generated method stub
-								DiallogModel dm = new DiallogModel();
-								dm.insert(dm.new DialLogItem(String
-										.valueOf(Calendar.getInstance()
-												.getTimeInMillis()), numberFrom));
-								new Thread(new DialThread(ctx, phoneNumber))
-										.start();
+								dialAndInsertLog(ctx, numberFrom, phoneNumber,df);
 							}
+
+							
 						}).show();
+	}
+	private static void dialAndInsertLog(final Context ctx,
+			final String numberFrom,
+			final String phoneNumber,
+			final DialFragment df) {
+		DiallogModel dm = new DiallogModel();
+		dm.insert(dm.new DialLogItem(String
+				.valueOf(Calendar.getInstance()
+						.getTimeInMillis()), numberFrom));
+		if (df!=null) {
+			df.onDial();
+		}
+		VarProvider.getInstance().setLastNumber(phoneNumber);
+		new Thread(new DialThread(ctx, phoneNumber))
+				.start();
+	}
+	public static void popDialDialog(final Context ctx, final String numberFrom){
+		popDialDialog(ctx, numberFrom, null,true);
+	}
+	public static void dial(final Context ctx, final String phoneNumber) {
+		// pop a dialog to notify the user the app is dialing another phone
+		// number right now
+		if (playing) {
+			Toast.makeText(ctx, R.string.notf_dialing, Toast.LENGTH_SHORT)
+					.show();
+			return;
+		}
+		new Thread(new DialThread(ctx, phoneNumber))
+		.start();
 	}
 }

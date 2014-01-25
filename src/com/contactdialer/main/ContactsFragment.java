@@ -26,7 +26,7 @@ import android.widget.TextView;
 import com.contactdialer.R;
 
 @SuppressLint("ValidFragment")
-class ContactsFragment extends Fragment {
+class ContactsFragment extends DialFragment {
 
 	class ListItemClickListener implements OnItemClickListener {
 		@Override
@@ -104,8 +104,8 @@ class ContactsFragment extends Fragment {
 			@Override
 			public void afterTextChanged(Editable s) {
 				mContactsBook.filter(originalCursor, s.toString());
-				mListView.scrollTo(0, 0);
 				((MyListAdapter) mListView.getAdapter()).notifyDataSetChanged();
+				mListView.setSelection(0);
 			}
 
 			@Override

@@ -18,14 +18,17 @@ class ContactsBook implements Cloneable {
 
 	// compileString create String for regex.Pattern to compile
 	@SuppressLint("DefaultLocale")
-	private String compileString(String filterString) {
+	private String compileString(String filterString,boolean first) {
 		String searchString = filterString.toUpperCase();
 		int length = searchString.length();
 		String returnString = "";
 		for (int i = 0; i < length; i++) {
 			String start = " ";
 			if (i == 0) {
-				start = "";
+				start = "\b";
+				if(first){
+					start="^";
+				}
 			}
 			returnString = returnString + start + searchString.charAt(i)
 					+ "\\S* \\S*";
@@ -35,14 +38,21 @@ class ContactsBook implements Cloneable {
 
 	public ContactsBook filter(Cursor contactCursor, String filterString) {
 		contacts = new ArrayList<ContactsUnit>();
-		Pattern pattern = Pattern.compile(compileString(filterString));
+		ArrayList<ContactsUnit> contactsNotFirst = new ArrayList<ContactsUnit>();
+		Pattern patternFirst = Pattern.compile(compileString(filterString,true));
+		Pattern patternNotFirstPattern = Pattern.compile(compileString(filterString,false));
 		contactCursor.moveToFirst();
 		do {
 			ContactsUnit cu = new ContactsUnit(contactCursor);
-			if (pattern.matcher(cu.getSortKey()).find()) {
+			if (patternFirst.matcher(cu.getSortKey()).find()) {
 				contacts.add(cu);
+				continue;
+			}
+			if (patternNotFirstPattern.matcher(cu.getSortKey()).find()) {
+				contactsNotFirst.add(cu);
 			}
 		} while (contactCursor.moveToNext());
+		contacts.addAll(contactsNotFirst);
 		return this;
 	}
 

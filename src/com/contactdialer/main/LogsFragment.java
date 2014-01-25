@@ -4,7 +4,6 @@ import java.util.Calendar;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.graphics.Bitmap;
@@ -30,13 +29,14 @@ import com.contactdialer.main.LogsModel.LogsList;
 
 
 @SuppressLint("ValidFragment")
-class LogsFragment extends Fragment {
+class LogsFragment extends DialFragment {
+	DialFragment mFragment=this;
 	class ListItemClickListener implements OnItemClickListener {
 		@Override
 		public void onItemClick(AdapterView<?> adapterView, final View view,
 				int position, long id) {
 			DialAgent.popDialDialog(getActivity(), mCallLogList.get(position)
-					.getNumber());
+					.getNumber(),mFragment, true);
 		}
 	}
 
@@ -73,6 +73,8 @@ class LogsFragment extends Fragment {
 				title=numberString;
 				numberString=null;
 				((TextView) convertView.findViewById(R.id.title)).setTextScaleX((float) 0.8);
+			} else {
+				((TextView) convertView.findViewById(R.id.title)).setTextScaleX((float) 1);
 			}
 			((TextView) convertView.findViewById(R.id.title))
 					.setText(title);
@@ -179,7 +181,7 @@ class LogsFragment extends Fragment {
 		setHasOptionsMenu(true);
 		View view = inflater.inflate(R.layout.calllogs, null);
 		mListView = (ListView) view.findViewById(R.id.listView);
-		updateCallLogList();
+		mCallLogList = LogsModel.getInstance(getActivity()).getLogsList();
 		myAdapter = new MyListAdapter();
 		mListView.setAdapter(myAdapter);
 		mListView.setOnItemClickListener(new ListItemClickListener());
@@ -225,9 +227,7 @@ class LogsFragment extends Fragment {
 									.findViewById(R.id.missed)).isChecked();
 							VarProvider.getInstance().setFilter(
 									ft);
-							updateCallLogList();
-							((MyListAdapter) mListView.getAdapter())
-									.notifyDataSetChanged();
+							notifyListChanged();
 						}
 					});
 			builder.setNegativeButton(R.string.word_cancel,
@@ -244,8 +244,20 @@ class LogsFragment extends Fragment {
 		return false;
 	}
 
-	private void updateCallLogList() {
+	private void notifyListChanged() {
 		mCallLogList = LogsModel.getInstance(getActivity()).getLogsList();
+		((MyListAdapter) mListView.getAdapter())
+		.notifyDataSetChanged();
+
 	}
+
+	@Override
+	public void onDial() {
+		//notifyListChanged();
+	}
+
+
+
+	
 
 }

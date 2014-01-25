@@ -190,20 +190,18 @@ public class VarProvider {
 	 *            name of the variable
 	 * @param value
 	 *            value of the variable
-	 * @return true if succeeding.
+	 * @return affected rows.
 	 */
-	public boolean update(String key, String value) {
+	public int update(String key, String value) {
 		SQLiteDatabase db = ExtDataBase.getDateBase();
 		if (db == null) {
-			return false;
+			return 0;
 		}
 		ContentValues cv = new ContentValues();
 		cv.put(VALUE_NAME, value);
 		int i = db.update(TABLE_NAME, cv, KEY_NAME + " =?",
 				new String[] { key });
-		Log.d("Volume", query(VOLUME_NAME));
-		Log.d("num", String.valueOf(i));
-		return true;
+		return i;
 	}
 
 	/**
@@ -222,5 +220,21 @@ public class VarProvider {
 		update(INTERVAL_NAME, String.valueOf(interval));
 		update(CURRENT_USER_NAME, currentUser);
 		return true;
+	}
+	private void putVar(String key,String value) {
+		int num=update(key, value);
+		if (num==0){
+			SQLiteDatabase db = ExtDataBase.getDateBase();
+			ContentValues cv= new ContentValues();
+			cv.put(KEY_NAME, key);
+			cv.put(VALUE_NAME, value);
+			db.insert(TABLE_NAME, null, cv);
+		}
+	}
+	public void setLastNumber(String last){
+		putVar("LastNumber", last);
+	}
+	public String getLastNumber(){
+		return query("LastNumber");
 	}
 }

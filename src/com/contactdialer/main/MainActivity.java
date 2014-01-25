@@ -15,9 +15,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.contactdialer.R;
 import com.contactdialer.common.ExtDataBase;
+import com.contactdialer.common.VarProvider;
 import com.contactdialer.setting.SettingActivity;
 
 public class MainActivity extends Activity {
@@ -133,6 +135,14 @@ public class MainActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle item selection
 		switch (item.getItemId()) {
+		case R.id.lastDial:
+			String phoneNumber=VarProvider.getInstance().getLastNumber();
+			if(phoneNumber==null){
+				break;
+			}
+			DialAgent.dial(mContext, phoneNumber);
+			Toast.makeText(mContext, phoneNumber, Toast.LENGTH_SHORT).show();
+			break;
 		case R.id.settings:
 			Intent intent = new Intent(this, SettingActivity.class);
 			startActivity(intent);

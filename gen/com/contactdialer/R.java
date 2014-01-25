@@ -53,7 +53,7 @@ public final class R {
         public static final int contactsView=0x7f09000a;
         public static final int dial=0x7f09000e;
         public static final int district=0x7f090023;
-        public static final int edit=0x7f09002b;
+        public static final int edit=0x7f09002a;
         public static final int editDuration=0x7f09001b;
         public static final int editInterval=0x7f09001e;
         public static final int editSearch=0x7f090009;
@@ -63,6 +63,7 @@ public final class R {
         public static final int in_coming=0x7f090012;
         public static final int in_prefix=0x7f090025;
         public static final int key=0x7f090014;
+        public static final int lastDial=0x7f09002b;
         public static final int list1=0x7f090027;
         public static final int listView=0x7f090002;
         public static final int menu_setting_save=0x7f09002f;
@@ -90,7 +91,6 @@ public final class R {
         public static final int type1=0x7f090003;
         public static final int user_item_selected_delete=0x7f090031;
         public static final int user_item_selected_edit=0x7f090030;
-        public static final int user_list_item_icon=0x7f09002a;
         public static final int user_list_item_name=0x7f090028;
         public static final int value=0x7f090015;
         public static final int versionInfo=0x7f090000;
@@ -147,6 +147,7 @@ public final class R {
         public static final int word_duration=0x7f050024;
         public static final int word_edit=0x7f050010;
         public static final int word_exit=0x7f050006;
+        public static final int word_filter=0x7f050027;
         public static final int word_group=0x7f050016;
         public static final int word_in_prefix=0x7f050017;
         public static final int word_interval=0x7f050025;

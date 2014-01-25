@@ -5,7 +5,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="word_about">About</string>
     <string name="email">yeshuhao13@gmail.com</string>
-    <string name="version">2.01 Jan, 2014</string>
+    <string name="version">2.02 Jan, 2014</string>
     <string name="word_exit">Exit</string>
     <string name="word_save">Save</string>
     <string name="word_cancel">Cancel</string>
@@ -39,4 +39,5 @@
     <string name="word_duration">Duration</string>
     <string name="word_interval">Interval</string>
     <string name="word_volume">Volume</string>
+    <string name="word_filter">Filter</string>
 </resources>
