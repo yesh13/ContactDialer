@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.contactdialer.R;
 import com.contactdialer.common.UserModel;
@@ -91,6 +92,9 @@ public class UserEditActivity extends Activity {
 		String name = getValue(findViewById(R.id.name));
 		String country = UserModel.User.CHINA;
 		String district = getValue(findViewById(R.id.district));
+		if (district.charAt(0)=='0'){
+			district=district.substring(1);
+		}
 		String group = getValue(findViewById(R.id.group));
 		String inGroup = getValue(findViewById(R.id.in_prefix));
 		String outGroup = getValue(findViewById(R.id.out_prefix));

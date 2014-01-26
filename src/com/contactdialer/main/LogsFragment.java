@@ -5,9 +5,11 @@ import java.util.Calendar;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -15,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -23,6 +26,7 @@ import android.widget.TextView;
 
 import com.contactdialer.R;
 import com.contactdialer.common.VarProvider;
+import com.contactdialer.main.ContactsFragment.ListItemLongClickListener;
 import com.contactdialer.main.LogsModel.LogItem;
 import com.contactdialer.main.LogsModel.LogsList;
 
@@ -37,6 +41,18 @@ class LogsFragment extends DialFragment {
 				int position, long id) {
 			DialAgent.popDialDialog(getActivity(), mCallLogList.get(position)
 					.getNumber(),mFragment, true);
+		}
+	}
+	class ListItemLongClickListener implements OnItemLongClickListener {
+
+		@Override
+		public boolean onItemLongClick(AdapterView<?> arg0, View view,
+				int arg2, long arg3) {
+			String numberFrom = mCallLogList.get(arg2).getNumber();
+			Uri telUri = Uri.parse("tel:"+numberFrom); 
+			Intent returnIt = new Intent(Intent.ACTION_DIAL, telUri); 
+			startActivity(returnIt);
+			return false;
 		}
 	}
 
@@ -185,6 +201,7 @@ class LogsFragment extends DialFragment {
 		myAdapter = new MyListAdapter();
 		mListView.setAdapter(myAdapter);
 		mListView.setOnItemClickListener(new ListItemClickListener());
+		mListView.setOnItemLongClickListener(new ListItemLongClickListener());
 		photoCall = BitmapFactory.decodeResource(getResources(),
 				R.drawable.ic_action_call);
 		photoSMS = BitmapFactory.decodeResource(getResources(),

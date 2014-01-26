@@ -136,7 +136,7 @@ public class UserModel {
 		String[] data=new String[COLUMN_NUM];
 
 		public User() {
-			data[INDEX_NAME] = "HOME";
+			data[INDEX_NAME] = "COMPANY";
 			data[INDEX_COUNTRY] = CHINA;
 			data[INDEX_DISTRICT] = "27";
 			data[INDEX_GROUP] = "8199";

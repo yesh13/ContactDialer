@@ -39,7 +39,7 @@ public class ExtDataBase {
 			db.execSQL("insert into Variables values ('Volume' , '100')");
 			db.execSQL("insert into Variables values ('CurrentUser' , 'Home')");
 			db.execSQL("create table Users (Name text primary key,Country text,District text,uGroup text,InGroup text, OutGroup text, MobilePrefix text)");
-			db.execSQL("insert into Users values ('Home' , '86','27','8199',3,9,0)");
+			db.execSQL("insert into Users values ('COMPANY' , '86','27','8199',3,9,0)");
 			db.execSQL("create table Filter (F0 boolean,F1 boolean, F2 boolean, F3 boolean , F4 boolean ,F5 boolean )");
 			db.execSQL("insert into Filter values (1,1,1,1,1,1)");
 			db.execSQL("create table DialLog (date text,number text )");

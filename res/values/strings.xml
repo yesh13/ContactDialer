@@ -5,12 +5,12 @@
     <string name="hello_world">Hello world!</string>
     <string name="word_about">About</string>
     <string name="email">yeshuhao13@gmail.com</string>
-    <string name="version">2.02 Jan, 2014</string>
+    <string name="version">2.02 (Jan, 2014)</string>
     <string name="word_exit">Exit</string>
     <string name="word_save">Save</string>
     <string name="word_cancel">Cancel</string>
-    <string name="notf_version">version:\n</string>
-    <string name="notf_author">written by:\n</string>
+    <string name="notf_version">Version:</string>
+    <string name="notf_author">By: </string>
     <string name="word_dial">Dial</string>
     <string name="notf_dialing">It\'s Dial Now !</string>
     <string name="notf_original_number">Original Number: </string>
@@ -23,8 +23,8 @@
     <string name="word_country">Country</string>
     <string name="word_district">District</string>
     <string name="word_group">Group</string>
-    <string name="word_in_prefix">InGroupPrefix</string>
-    <string name="word_out_prefix">OutGroupPrefix</string>
+    <string name="word_in_prefix">InPrefix</string>
+    <string name="word_out_prefix">OutPrefix</string>
     <string name="word_mobile_prefix">MobilePrefix</string>
     <string name="word_add">Add</string>
     <string name="equal_name_notification">Activated mode should not be removed!</string>
