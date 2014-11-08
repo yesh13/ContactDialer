@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -29,7 +30,7 @@ import android.widget.TextView;
 import com.contactdialer.R;
 
 @SuppressLint("ValidFragment")
-class ContactsFragment extends DialFragment {
+public class ContactsFragment extends DialFragment {
 
 	class ListItemClickListener implements OnItemClickListener {
 		@Override
@@ -56,7 +57,7 @@ class ContactsFragment extends DialFragment {
 			Uri telUri = Uri.parse("tel:"+numberFrom); 
 			Intent returnIt = new Intent(Intent.ACTION_DIAL, telUri); 
 			startActivity(returnIt);
-			return false;
+			return true;
 		}
 	}
 
@@ -160,6 +161,7 @@ class ContactsFragment extends DialFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		Log.d("onCall", "Create ContactsFragment");
 		View view = inflater.inflate(R.layout.contacts, null);
 		mListView = (ListView) view.findViewById(R.id.contactsView);
 		/** 得到手机通讯录联系人信息 **/
@@ -185,6 +187,7 @@ class ContactsFragment extends DialFragment {
 		if (originalCursor != null) {
 			originalCursor.close();
 		}
+		Log.d("onCall", "Destroy ContactsFragment");
 	}
 
 }

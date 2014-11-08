@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashSet;
 
+import android.app.ApplicationErrorReport.CrashInfo;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -31,6 +32,7 @@ class NumberParserModel {
 	}
 
 	public String district(String s) {
+		String ans=null;
 		if (mDB == null) {
 			NumberParserDataBase myOpener = new NumberParserDataBase(mContext,
 					"number.db", "number.db");
@@ -40,8 +42,9 @@ class NumberParserModel {
 		try {
 			cursor = mDB.query("Mobile_Table", Table.column, Table.select,
 					new String[] { s }, null, null, null);
-			if (cursor.moveToFirst()) {
-				return cursor.getString(Table.DISTRICT_COLUMN);
+			if (cursor.getCount()!=0) {
+				cursor.moveToFirst();
+				ans= cursor.getString(Table.DISTRICT_COLUMN);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -51,7 +54,8 @@ class NumberParserModel {
 				cursor.close();
 			}
 		}
-		return null;
+		mDB.close();
+		return ans;
 	}
 
 	public boolean init(Context ctx) {

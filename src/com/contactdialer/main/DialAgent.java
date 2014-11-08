@@ -105,7 +105,8 @@ class DialAgent {
 							@Override
 							public void onClick(DialogInterface dialog,
 									int which) {
-								dialAndInsertLog(ctx, numberFrom, phoneNumber,df);
+								String finalPhoneNumber=editNumber.getText().toString();
+								dialAndInsertLog(ctx, numberFrom, finalPhoneNumber,df);
 							}
 
 							

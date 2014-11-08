@@ -33,7 +33,7 @@ import com.contactdialer.main.LogsModel.LogsList;
 
 
 @SuppressLint("ValidFragment")
-class LogsFragment extends DialFragment {
+public class LogsFragment extends DialFragment {
 	DialFragment mFragment=this;
 	class ListItemClickListener implements OnItemClickListener {
 		@Override

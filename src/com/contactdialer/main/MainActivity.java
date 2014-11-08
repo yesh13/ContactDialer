@@ -4,12 +4,14 @@ import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,7 +30,7 @@ public class MainActivity extends Activity {
 		private ContactsFragment mFragment;
 		private final String mTag;
 
-		public ContactsTabListener(Context ctx, String tag) {
+		public ContactsTabListener(String tag) {
 			mTag = tag;
 		}
 
@@ -44,11 +46,13 @@ public class MainActivity extends Activity {
 				// If not, instantiate and add it to the activity
 				mFragment = new ContactsFragment();
 				ft.add(android.R.id.content, mFragment, mTag);
+				Log.d("onCall", "create tab1");
 			} else {
 				// If it exists, simply attach it in order to show it
 				ft.attach(mFragment);
+				Log.d("onCall", "attach tab1");
 			}
-
+			activeFragment=mFragment;
 		}
 
 		public void onTabUnselected(Tab tab, FragmentTransaction ft) {
@@ -56,6 +60,7 @@ public class MainActivity extends Activity {
 				// Detach the fragment, because another one is being attached
 				ft.detach(mFragment);
 			}
+			Log.d("onCall", "detach tab1");
 		}
 
 	}
@@ -65,7 +70,7 @@ public class MainActivity extends Activity {
 		private final String mTag;
 
 
-		public LogsTabListener(Context ctx, String tag) {
+		public LogsTabListener(String tag) {
 			mTag = tag;
 		}
 
@@ -82,10 +87,13 @@ public class MainActivity extends Activity {
 				// If not, instantiate and add it to the activity
 				mFragment = new LogsFragment();
 				ft.add(android.R.id.content, mFragment, mTag);
+				Log.d("onCall", "create tab2");
 			} else {
 				// If it exists, simply attach it in order to show it
 				ft.attach(mFragment);
+				Log.d("onCall", "attach tab2");
 			}
+			activeFragment=mFragment;
 		}
 
 		public void onTabUnselected(Tab tab, FragmentTransaction ft) {
@@ -93,18 +101,24 @@ public class MainActivity extends Activity {
 				// Detach the fragment, because another one is being attached
 				ft.detach(mFragment);
 			}
+			Log.d("onCall", "detach tab2");
 		}
 
 	}
 
 	private Context mContext = null;
+	private DialFragment activeFragment=null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		Log.d("onCall", "Create Main");
 		super.onCreate(savedInstanceState);
+		if(savedInstanceState!=null){
+			return;
+		}
 		mContext = this;
-		ExtDataBase.getInstance().init(this);
-		NumberParserModel.getInstance().init(this);
+		ExtDataBase.getInstance().init(getApplicationContext());
+		NumberParserModel.getInstance().init(getApplicationContext());
 		ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
@@ -112,16 +126,17 @@ public class MainActivity extends Activity {
 				.newTab()
 				.setText(R.string.nav_main_contacts)
 				.setTabListener(
-						new ContactsTabListener(this,
+						new ContactsTabListener(
 								getString(R.string.nav_main_contacts)));
 		actionBar.addTab(tab);
 		tab = actionBar
 				.newTab()
 				.setText(R.string.nav_main_log)
 				.setTabListener(
-						new LogsTabListener(this,
+						new LogsTabListener(
 								getString(R.string.nav_main_log)));
 		actionBar.addTab(tab);
+		Log.d("onCall", "Create Main finish");
 	}
 
 	@Override
@@ -168,8 +183,8 @@ public class MainActivity extends Activity {
 				+ this.getString(R.string.email));
 		PackageInfo pi = null;
 		try {
-			pi = mContext.getPackageManager().getPackageInfo(
-					mContext.getPackageName(), 0);
+			pi = getPackageManager().getPackageInfo(
+					getPackageName(), 0);
 		} catch (NameNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -178,6 +193,12 @@ public class MainActivity extends Activity {
 		new AlertDialog.Builder(mContext)
 				.setTitle(this.getString(R.string.word_about))
 				.setView(aboutDialog).show();
+	}
+
+	@Override
+	protected void onDestroy() {
+		Log.d("onCall", "Destroy Main");
+		super.onDestroy();
 	}
 
 }
